@@ -1,0 +1,159 @@
+@import './reset.css';
+@import './typography.css';
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel.eot");
+  src: url("./fonts/Sahel.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel.woff2") format("woff2"), url("./fonts/Sahel.woff") format("woff"), url("./fonts/Sahel.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Bold.eot");
+  src: url("./fonts/Sahel-Bold.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Bold.woff2") format("woff2"), url("./fonts/Sahel-Bold.woff") format("woff"), url("./fonts/Sahel-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Light.eot");
+  src: url("./fonts/Sahel-Light.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Light.woff2") format("woff2"), url("./fonts/Sahel-Light.woff") format("woff"), url("./fonts/Sahel-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-SemiBold.eot");
+  src: url("./fonts/Sahel-SemiBold.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-SemiBold.woff2") format("woff2"), url("./fonts/Sahel-SemiBold.woff") format("woff"), url("./fonts/Sahel-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Black.eot");
+  src: url("./fonts/Sahel-Black.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Black.woff2") format("woff2"), url("./fonts/Sahel-Black.woff") format("woff"), url("./fonts/Sahel-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  direction: rtl;
+}
+
+html {
+  height: 100%;
+  background: white;
+  background: radial-gradient(circle, #fff 20%, #ccc);
+  background-size: cover;
+}
+
+.container {
+  background-color: #FAF7FF;
+  border: 1px solid #B1AFC1;
+  border-radius: 5px;
+  box-shadow: 0px 4px #B1AFC1, 0px 10px 15px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  padding-bottom: 30px;
+  margin: 100px auto;
+  color: #474554;
+}
+.container_header {
+  text-align: center !important;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 10px;
+  box-shadow: 0px 4px #B1AFC1;
+  width: fit-content;
+  border-radius: 30px;
+  text-shadow: 0px 7px 6px rgba(71, 69, 84, 0.3137254902);
+}
+.container_question {
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  font-size: 20px;
+  border-left: 1px solid #B1AFC1;
+  border-right: 1px solid #B1AFC1;
+  border-radius: 30px;
+  width: fit-content;
+  display: flex;
+}
+.container_options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: fit-content;
+  margin: 20px auto;
+}
+.container_options_option {
+  display: flex;
+  align-items: center;
+}
+.container_options_option-label {
+  margin-right: 5px;
+  font-size: 20px;
+}
+.container_options_option-span {
+  font-size: 20px;
+}
+
+#btn {
+  border: none;
+  background-color: #fb7e34;
+  color: #fff;
+  margin: 0 auto;
+  display: flex;
+  padding: 0px 35px;
+  font-size: 30px;
+  border-radius: 30px;
+  transition: background-color 0.5s;
+  font-family: Sahel;
+  font-weight: 600;
+  box-shadow: 0px 10px 15px rgba(251, 125, 52, 0.2392156863);
+  cursor: pointer;
+}
+#btn:hover {
+  background-color: #f75f05;
+  box-shadow: 0px 10px 15px rgba(247, 94, 5, 0.2117647059);
+}
+
+#score-h3 {
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 10px 10px;
+  width: fit-content;
+  box-shadow: 0px -4px #B1AFC1, 0px 4px #B1AFC1, 0px 10px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.score-red {
+  color: red;
+}
+
+a.github {
+  text-decoration: none;
+  color: #f5f6fa;
+  background-color: #9c88ff;
+  box-shadow: 0px 0px 2px 2px #9c88ff;
+  border-radius: 16px;
+  margin-right: 6px;
+  padding: 0px 8px;
+  transition: 300ms;
+}
+a.github:hover {
+  background-color: #8c7ae6;
+}
+a.github:active {
+  background-color: #6b5cb4;
+}
+
+img.svg {
+  width: 22px;
+  padding: 0 4px;
+}
+
+p.create {
+  color: #474554;
+  padding-bottom: 10px;
+  text-align: center;
+}
