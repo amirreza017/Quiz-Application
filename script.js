@@ -6,7 +6,7 @@ const Questions = [
 			{ text: "1. گرگان", isCorrect: false },
 			{ text: "2. شیراز", isCorrect: false },
 			{ text: "3. تهران", isCorrect: true },
-			{ text: "4. اصفحان", isCorrect: false }
+			{ text: "4. اصفهان", isCorrect: false }
 		]
 	},
 	{
