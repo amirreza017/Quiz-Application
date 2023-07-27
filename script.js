@@ -94,6 +94,14 @@ const Questions = [
 
 let currQuestion = 0
 let score = 0
+let resultScore;
+let atof = [];
+let answerTrueOrFalse = { ATOF: atof };
+let data = JSON.parse(localStorage.getItem('correctAnswer'))
+
+if (Array.isArray(data)) {
+    resultScore = data[11];
+}
 
 function loadQues() {
     const question = document.getElementById("ques")
@@ -126,7 +134,17 @@ function loadQues() {
 	}
 }
 
-loadQues();
+
+if (Array.isArray(data)) {
+    if (data.includes(true)) {
+        document.getElementById("opt").remove()
+        document.getElementById("ques").remove()
+        document.getElementById("btn").remove()
+        loadScore();
+    }
+} else {
+    loadQues();
+}
 
 function loadScore() {
 
@@ -134,10 +152,16 @@ function loadScore() {
 
     const headingOfScore = document.createElement('h3')
 
-    totalScore.appendChild(headingOfScore);
-
     headingOfScore.setAttribute('id','score-h3')
-    headingOfScore.textContent = `شما از ${Questions.length} سوال، به ${score} سوال جواب درست را داده اید`
+
+    if (Array.isArray(data)) {
+        headingOfScore.textContent = `شما از ${Questions.length} سوال، به ${resultScore} سوال جواب درست را داده اید`;
+    } else {
+        headingOfScore.textContent = `شما از ${Questions.length} سوال، به ${score} سوال جواب درست را داده اید`;
+
+    }
+
+	totalScore.appendChild(headingOfScore);
 
     Questions.forEach((line,index) => {
 
@@ -167,75 +191,124 @@ function loadScore() {
 
         totalScore.appendChild(quesDiv);
         totalScore.appendChild(ansDiv);
-
     }) 
 
-	for (let i = 0; i < Questions.length; i++ ) {
-
-		if (Questions[i].a[0].isCorrect === true) {
-
-			document.getElementById(`spanid${i}-0`).style.color = 'green'
-
-			if (answerTrueOrFalse.ATOF[i] === 1) {
-				document.getElementById(`spanid${i}-1`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 2) {
-				document.getElementById(`spanid${i}-2`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 3) {
-				document.getElementById(`spanid${i}-3`).style.color = 'red'
-			}
-
-		} else if (Questions[i].a[1].isCorrect === true) {
-
-			document.getElementById(`spanid${i}-1`).style.color = 'green'
-
-			if (answerTrueOrFalse.ATOF[i] === 0) {
-				document.getElementById(`spanid${i}-0`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 2) {
-				document.getElementById(`spanid${i}-2`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 3) {
-				document.getElementById(`spanid${i}-3`).style.color = 'red'
-			}
-		
-		} else if (Questions[i].a[2].isCorrect === true) {
-
-			document.getElementById(`spanid${i}-2`).style.color = 'green'
-
-			if (answerTrueOrFalse.ATOF[i] === 0) {
-				document.getElementById(`spanid${i}-0`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 1) {
-				document.getElementById(`spanid${i}-1`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 3) {
-				document.getElementById(`spanid${i}-3`).style.color = 'red'
-			}
-
-		} else if (Questions[i].a[3].isCorrect === true) {
-
-			document.getElementById(`spanid${i}-3`).style.color = 'green'
-
-			if (answerTrueOrFalse.ATOF[i] === 0) {
-				document.getElementById(`spanid${i}-0`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 1) {
-				document.getElementById(`spanid${i}-1`).style.color = 'red'
-			} else if (answerTrueOrFalse.ATOF[i] === 2) {
-				document.getElementById(`spanid${i}-2`).style.color = 'red'
-			}
-		}
-	}
+    for (let i = 0; i < Questions.length; i++ ) {
+        if (Array.isArray(data)) {
+            if (Questions[i].a[0].isCorrect === true) {
+    
+                document.getElementById(`spanid${i}-0`).style.color = 'green'
+            
+                if (data[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (data[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                } else if (data[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[1].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-1`).style.color = 'green'
+            
+                if (data[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (data[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                } else if (data[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[2].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-2`).style.color = 'green'
+            
+                if (data[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (data[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (data[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[3].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-3`).style.color = 'green'
+            
+                if (data[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (data[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (data[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                }
+            }
+        } else {
+            if (Questions[i].a[0].isCorrect === true) {
+    
+                document.getElementById(`spanid${i}-0`).style.color = 'green'
+            
+                if (answerTrueOrFalse.ATOF[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[1].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-1`).style.color = 'green'
+            
+                if (answerTrueOrFalse.ATOF[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[2].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-2`).style.color = 'green'
+            
+                if (answerTrueOrFalse.ATOF[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 3) {
+                    document.getElementById(`spanid${i}-3`).style.color = 'red'
+                }
+            
+            } else if (Questions[i].a[3].isCorrect === true) {
+            
+                document.getElementById(`spanid${i}-3`).style.color = 'green'
+            
+                if (answerTrueOrFalse.ATOF[i] === 0) {
+                    document.getElementById(`spanid${i}-0`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 1) {
+                    document.getElementById(`spanid${i}-1`).style.color = 'red'
+                } else if (answerTrueOrFalse.ATOF[i] === 2) {
+                    document.getElementById(`spanid${i}-2`).style.color = 'red'
+                }
+            }
+        }
+    }
 }
 
 function nextQuestion() {
+
 	if (currQuestion < Questions.length - 1) {
 		currQuestion++;
 		loadQues();
 	} else {
+        currQuestion++;
 		document.getElementById("opt").remove()
 		document.getElementById("ques").remove()
 		document.getElementById("btn").remove()
 		loadScore();
 	}
 }
-let atof = [];
-let answerTrueOrFalse = { ATOF: atof };
 
 function checkAns() {
 
@@ -248,6 +321,12 @@ function checkAns() {
 		nextQuestion();
 	}
 
-    answerTrueOrFalse.ATOF.push(selectedAns)
-    localStorage.setItem('correctAnswer',JSON.stringify(answerTrueOrFalse.ATOF))
+    answerTrueOrFalse.ATOF.push(selectedAns);
+    localStorage.setItem('correctAnswer',JSON.stringify(answerTrueOrFalse.ATOF));
+
+    if (currQuestion === Questions.length) {
+        answerTrueOrFalse.ATOF.push(true);
+        answerTrueOrFalse.ATOF.push(score);
+        localStorage.setItem('correctAnswer',JSON.stringify(answerTrueOrFalse.ATOF));
+    }
 }
